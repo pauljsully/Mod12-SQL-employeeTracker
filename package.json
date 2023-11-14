@@ -1,0 +1,24 @@
+{
+  "name": "mod12-sql-employeetracker",
+  "version": "1.0.0",
+  "description": "Use SQL and other packages to develop a simple emplyee tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pauljsully/Mod12-SQL-employeeTracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pauljsully/Mod12-SQL-employeeTracker/issues"
+  },
+  "homepage": "https://github.com/pauljsully/Mod12-SQL-employeeTracker#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "inquirer": "^9.2.12",
+    "mysql2": "^2.3.3"
+  }
+}
