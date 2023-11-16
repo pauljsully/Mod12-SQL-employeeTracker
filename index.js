@@ -11,10 +11,10 @@ const promptUser = () => {
                 "View All Departments",
                 "View All Employees",
                 "View all roles",
+                "Add a department",
                 "Add a role",
                 "Add an employee",
                 "Update an employee role",
-                "Add a department",
                 "Quit!"
             ]
         }

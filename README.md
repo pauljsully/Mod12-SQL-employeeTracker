@@ -1,36 +1,39 @@
 # Mod12-SQL-employeeTracker
 
-We want to build an application that is able to write and save notes, so that I can organize my thoughts and keep track of tasks I need to complete.
+We want to build an application that is able to be able to view and manage the departments, roles, and employees in a company.
 
 
 ## Acceptance Criteria
 
-    GIVEN a note-taking application
-    WHEN I open the Note Taker
-    THEN I am presented with a landing page with a link to a notes page
-    WHEN I click on the link to the notes page
-    THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-    WHEN I enter a new note title and the note’s text
-    THEN a "Save Note" button and a "Clear Form" button appear in the navigation at the top of the page
-    WHEN I click on the Save button
-    THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes and the buttons in the navigation disappear
-    WHEN I click on an existing note in the list in the left-hand column
-    THEN that note appears in the right-hand column and a "New Note" button appears in the navigation
-    WHEN I click on the "New Note" button in the navigation at the top of the page
-    THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column and the button disappears
-
+    GIVEN a command-line application that accepts user input
+    WHEN I start the application
+    THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
+    WHEN I choose to view all departments
+    THEN I am presented with a formatted table showing department names and department ids
+    WHEN I choose to view all roles
+    THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
+    WHEN I choose to view all employees
+    THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+    WHEN I choose to add a department
+    THEN I am prompted to enter the name of the department and that department is added to the database
+    WHEN I choose to add a role
+    THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
+    WHEN I choose to add an employee
+    THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
+    WHEN I choose to update an employee role
+    THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
 
 ## ReadME
 
-In this project we are able to use our skills on Express.js back end and will save and retrieve note data from a JSON file.
+In this project we are able to use our skills in mySQL, node, inquierer to create prompts and prvide feedback to the user. Providing the user with mySQL tables of data of their business.
 
 ## Implentation
 
 * For installation onto local machine, clone provided repository.
 * Use `npm i` to install all dependencies or devDependencies from a package. json file.
-* Use `npm start` to initiate the server in your terminal.
-* Visit the local host URL.
+* Use `node index.js` to initiate the command line application.
+* Respond to the prompts accordingly.
 
 ## Notes
 
@@ -43,12 +46,12 @@ Used Knowledge and past Activities from GWU Bootcamp: GWU-VIRT-FSF-PT-08-2023-U-
 
 ## Assets
 
-This is the Heroku live application:
-(https://intense-castle-48534-e6d230956dc1.herokuapp.com/)
+This is live application (README):
+()
 
 
 This is the github repo location:
-(https://github.com/pauljsully/Mod11-express.js-noteTaker.git)
+(https://github.com/pauljsully/Mod12-SQL-employeeTracker.git)
  
 
 
