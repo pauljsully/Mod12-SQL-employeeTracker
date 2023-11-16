@@ -38,20 +38,20 @@ const promptUser = () => {
             case "Add an employee":
                 addEmployee();
                 break;
-            case "View all employees":
-                viewAllEmployees();
+            case "Update an employee role":
+                updateRole();
                 break;
-            case "View all employees":
-                viewAllEmployees();
+            case "View all roles":
+                viewAllRoles();
                 break;
-            case "View all employees":
-                viewAllEmployees();
+            case "Add a role":
+                addRoles();
                 break;
-            case "View all employees":
-                viewAllEmployees();
+            case "View all departments":
+                viewAllDepartments();
                 break;
-            case "View all employees":
-                viewAllEmployees();
+            case "Add a department":
+                addDepartment();
                 break;
             case "Quit":
                 quitThisJob();
@@ -59,3 +59,6 @@ const promptUser = () => {
         }
     })
 };
+
+promptUser();
+
