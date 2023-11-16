@@ -39,6 +39,9 @@ const promptUser = () => {
                 console.table(result);
                 promptUser();
             });
+
+
+
         } else if (choice.selection === 'View All Departments') {
             db.query(`SELECT * FROM department`, (err, result) => {
                 if (err) throw err;
@@ -46,17 +49,24 @@ const promptUser = () => {
                 console.table(result);
                 promptUser();
             });
+
+
+
+
         } else if (choice.selection === 'View all roles') {
-            db.query(`SELECT * FROM roles`, (err, result) => {
+            db.query(
+
+            `SELECT 
+                roles.id AS "ID",
+                roles.title AS 'Role',
+                roles.salary AS 'Salary',
+                department.department_name AS 'Department Name'
+            FROM roles
+            JOIN department ON roles.department_id = department.id`,
+
+             (err, result) => {
                 if (err) throw err;
-                console.log("Viewing All Departments: ");
-                console.table(result);
-                promptUser();
-            });
-        } else if (choice.selection === 'View all roles') {
-            db.query(`SELECT * FROM roles`, (err, result) => {
-                if (err) throw err;
-                console.log("Viewing All Departments: ");
+                console.log("Viewing All Roles: ");
                 console.table(result);
                 promptUser();
             });
