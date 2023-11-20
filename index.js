@@ -222,12 +222,83 @@ const promptUser = () => {
                             promptUser();
                         });
                     })
-        })
-    }
+            })
+        } else if (choice.selection === 'Update an Employee Role') {
+            db.query(`SELECT * FROM employee, roles`, (err, result) => {
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        name: 'employee',
+                        message: 'Which employee\'s role do you want to update?',
+                        choices: () => {
+                            var array = [];
+                            for (var i = 0; i < result.length; i++) {
+                                array.push(result[i].last_name);
+                            }
+                            var employeeArray = [...new Set(array)];
+                            return employeeArray;
+                        }
+                    },
+                    {
+                        type: 'list',
+                        name: 'role',
+                        message: 'What is their new role?',
+                        choices: () => {
+                            var array = [];
+                            for (var i = 0; i < result.length; i++) {
+                                array.push(result[i].title);
+                            }
+                            var newArray = [...new Set(array)];
+                            return newArray;
+                        }
+                    }
+                ]).then((answer) => {
+                    const selectedEmployee = result.find(employee => employee.last_name === answer.employee);
+                    const selectedRole = result.find(role => role.title === answer.role);
         
-    });
-};
-    
+                    // Update the employee's role in the database
+                    db.query('UPDATE employee SET role_id = ? WHERE id = ?',[selectedRole.id, selectedEmployee.id],
+                        (err, result) => {
+                            if (err) throw err;
+                            console.log(`Updated ${answer.employee}'s role to ${answer.role} in the database.`);
+                            promptUser();
+                        });
+                })
+            });
+        } else if (choice.selection === 'Quit!') {
+            db.query(`SELECT * FROM employee`, (err, result) => {
+                if (err) throw err;
+        
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        name: 'employeeLast',
+                        message: 'Which employee is Quitting?',
+                        choices: () => {
+                            var array = [];
+                            for (var i = 0; i < result.length; i++) {
+                                array.push(result[i].last_name);
+                            }
+                            var employeeArray = [...new Set(array)];
+                            return employeeArray;
+                        }
+                    }
+                ]).then((answer) => {
+                    // Get the selected employee's information
+                    const selectedEmployee = result.find(employee => employee.last_name === answer.employeeLast);
+        
+                    // Delete the employee from the database
+                    db.query('DELETE FROM employee WHERE id = ?',[selectedEmployee.id],
+                    (err, result) => {
+                        if (err) throw err;
+                        console.log(`Deleted ${selectedEmployee.first_name} ${selectedEmployee.last_name} from the database.`);
+                        promptUser();
+                    });
+                });
+            });
+        }  
+    })
+}
 promptUser();
-        
 
+    
