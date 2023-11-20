@@ -223,8 +223,12 @@ const promptUser = () => {
                         });
                     })
             })
-        } else if (choice.selection === 'Update an Employee Role') {
-            db.query(`SELECT * FROM employee, roles`, (err, result) => {
+        }  else if (choice.selection === 'Update an Employee Role') {
+            db.query(`
+                SELECT employee.id AS employee_id, employee.last_name, roles.id AS role_id, roles.title
+                FROM employee
+                JOIN roles ON employee.role_id = roles.id`, (err, result) => {
+                
                 inquirer.prompt([
                     {
                         type: 'list',
@@ -255,10 +259,9 @@ const promptUser = () => {
                 ]).then((answer) => {
                     const selectedEmployee = result.find(employee => employee.last_name === answer.employee);
                     const selectedRole = result.find(role => role.title === answer.role);
-        
-                    // Update the employee's role in the database
-                    db.query('UPDATE employee SET role_id = ? WHERE id = ?',[selectedRole.id, selectedEmployee.id],
-                        (err, result) => {
+            
+                    db.query('UPDATE employee SET role_id = ? WHERE id = ?',
+                        [selectedRole.role_id, selectedEmployee.employee_id],(err, result) => {
                             if (err) throw err;
                             console.log(`Updated ${answer.employee}'s role to ${answer.role} in the database.`);
                             promptUser();
@@ -284,10 +287,8 @@ const promptUser = () => {
                         }
                     }
                 ]).then((answer) => {
-                    // Get the selected employee's information
                     const selectedEmployee = result.find(employee => employee.last_name === answer.employeeLast);
         
-                    // Delete the employee from the database
                     db.query('DELETE FROM employee WHERE id = ?',[selectedEmployee.id],
                     (err, result) => {
                         if (err) throw err;
