@@ -158,7 +158,43 @@ const promptUser = () => {
                     });
                 })
             });
-        } else if
+        } else if (choice.selection === 'Add an employee') {
+            db.query(`SELECT * FROM employee, role`, (err, result) => {
+                if (err) throw err;
+                inquirer.prompt([
+                    {
+                        // Adding Employee First Name
+                        type: 'input',
+                        name: 'firstName',
+                        message: 'What is the employees first name?',
+                        validate: firstNameInput => {
+                            if (firstNameInput) {
+                                return true;
+                            } else {
+                                console.log('Please Add A First Name!');
+                                return false;
+                            }
+                        }
+                    },
+                    {
+                        // Adding Employee Last Name
+                        type: 'input',
+                        name: 'lastName',
+                        message: 'What is the employees last name?',
+                        validate: lastNameInput => {
+                            if (lastNameInput) {
+                                return true;
+                            } else {
+                                console.log('Please Add A Salary!');
+                                return false;
+                            }
+                        }
+                    },
+                    {
+                        
+                    }
+        })
+    }
         
     });
 };
