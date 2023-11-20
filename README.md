@@ -23,6 +23,9 @@ We want to build an application that is able to be able to view and manage the d
     WHEN I choose to update an employee role
     THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
+    WHEN I choose to Quit!
+    THEN I am prompted to select an employee that is quitting do DELETE and update the database.
+
 
 ## ReadME
 
