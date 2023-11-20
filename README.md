@@ -51,7 +51,7 @@ Used Knowledge and past Activities from GWU Bootcamp: GWU-VIRT-FSF-PT-08-2023-U-
 ## Assets
 
 This is live application (README):
-()
+(https://pauljsully.github.io/Mod12-SQL-employeeTracker/)
 
 
 This is the github repo location:
