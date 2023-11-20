@@ -56,6 +56,11 @@ This is live application (README):
 
 This is the github repo location:
 (https://github.com/pauljsully/Mod12-SQL-employeeTracker.git)
+
+Link to video on Google Drive:
+(https://drive.google.com/file/d/15sIKb1GgI64CuD14WvB_fi9RIU3w3FN7/view)
+
+<iframe src="https://drive.google.com/file/d/15sIKb1GgI64CuD14WvB_fi9RIU3w3FN7/preview" width="640" height="480"></iframe>
  
 
 
