@@ -31,6 +31,7 @@ In this project we are able to use our skills in mySQL, node, inquierer to creat
 ## Implentation
 
 * For installation onto local machine, clone provided repository.
+* Make sure your "user" and "password" in `connection.js` is correct for your mySQL.
 * Use `npm i` to install all dependencies or devDependencies from a package. json file.
 * Use `node index.js` to initiate the command line application.
 * Respond to the prompts accordingly.
