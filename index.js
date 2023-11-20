@@ -12,9 +12,9 @@ const promptUser = () => {
                 "View All Employees",
                 "View all roles",
                 "Add a Department",
-                "Add a role",
-                "Add an employee",
-                "Update an employee role",
+                "Add a Role",
+                "Add an Employee",
+                "Update an Employee Role",
                 "Quit!"
             ]
         }
@@ -97,13 +97,12 @@ const promptUser = () => {
                     promptUser();
                 });
             });
-        } else if (choice.selection === 'Add a role') {
+        } else if (choice.selection === 'Add a Role') {
             db.query(`SELECT * FROM department`, (err, result) => {
                 if (err) throw err;
 
                 inquirer.prompt([
                     {
-                        // Adding A Role
                         type: 'input',
                         name: 'role',
                         message: 'What is the name of the role?',
@@ -117,7 +116,6 @@ const promptUser = () => {
                         }
                     },
                     {
-                        // Adding the Salary
                         type: 'input',
                         name: 'salary',
                         message: 'What is the salary of the role?',
@@ -131,7 +129,6 @@ const promptUser = () => {
                         }
                     },
                     {
-                        // Department
                         type: 'list',
                         name: 'department',
                         message: 'Which department does the role belong to?',
@@ -144,7 +141,6 @@ const promptUser = () => {
                         }
                     }
                 ]).then((answer) => {
-                    // Comparing the result and storing it into the variable
                     for (var i = 0; i < result.length; i++) {
                         if (result[i].department_name === answer.department) {
                             var department = result[i];
@@ -158,15 +154,14 @@ const promptUser = () => {
                     });
                 })
             });
-        } else if (choice.selection === 'Add an employee') {
-            db.query(`SELECT * FROM employee, role`, (err, result) => {
+        } else if (choice.selection === 'Add an Employee') {
+            db.query(`SELECT * FROM employee, roles`, (err, result) => {
                 if (err) throw err;
                 inquirer.prompt([
                     {
-                        // Adding Employee First Name
                         type: 'input',
                         name: 'firstName',
-                        message: 'What is the employees first name?',
+                        message: 'What is the employees First Name?',
                         validate: firstNameInput => {
                             if (firstNameInput) {
                                 return true;
@@ -177,10 +172,9 @@ const promptUser = () => {
                         }
                     },
                     {
-                        // Adding Employee Last Name
                         type: 'input',
                         name: 'lastName',
-                        message: 'What is the employees last name?',
+                        message: 'What is the employees Last Name?',
                         validate: lastNameInput => {
                             if (lastNameInput) {
                                 return true;
@@ -191,14 +185,49 @@ const promptUser = () => {
                         }
                     },
                     {
-                        
-                    }
+                        type: 'list',
+                        name: 'role',
+                        message: 'What is the employees role?',
+                        choices: () => {
+                            var array = [];
+                            for (var i = 0; i < result.length; i++) {
+                                array.push(result[i].title);
+                            }
+                            var newArray = [...new Set(array)];
+                            return newArray;
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'manager',
+                        message: 'Who is the employees manager?',
+                        validate: managerInput => {
+                            if (managerInput) {
+                                return true;
+                            } else {
+                                console.log('Please Add A Manager!');
+                                return false;
+                            }
+                        }
+                    }]).then((answer) => {
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].title === answer.role) {
+                                var role = result[i];
+                            }
+                        }
+    
+                        db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answer.firstName, answer.lastName, role.id, answer.manager.id], (err, result) => {
+                            if (err) throw err;
+                            console.log(`Added ${answer.firstName} ${answer.lastName} to the database.`)
+                            promptUser();
+                        });
+                    })
         })
     }
         
     });
 };
     
-        promptUser();
+promptUser();
         
 
